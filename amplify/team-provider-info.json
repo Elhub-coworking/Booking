@@ -19,7 +19,7 @@
       "function": {
         "otpauthCreateAuthChallenge": {
           "deploymentBucketName": "amplify-otpauth-dev-111806-deployment",
-          "s3Key": "amplify-builds/otpauthCreateAuthChallenge-5170796f5966704c4330-build.zip"
+          "s3Key": "amplify-builds/otpauthCreateAuthChallenge-4742766a6e6d79536462-build.zip"
         },
         "otpauthDefineAuthChallenge": {
           "deploymentBucketName": "amplify-otpauth-dev-111806-deployment",
