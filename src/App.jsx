@@ -26,10 +26,11 @@ const App = () => {
     setStatusMessage("Verifying your number");
     const phoneValue = `${dialCode}${phoneNumber}`;
     try {
+      //calling singIn without password triggers custom auth flow
       const user = await Auth.signIn(phoneValue);
       setSession(user);
       setStatusMessage("Waiting for OTP");
-      console.log(user);
+      console.log("app", user);
     } catch (error) {
       if (error.code === "UserNotFoundException") {
         setStatusMessage("User not found");
@@ -42,6 +43,7 @@ const App = () => {
   };
 
   const verifyOTP = () => {
+    console.log("inside verification")
     Auth.sendCustomChallengeAnswer(session, otp)
       .then((user) => {
         setUser(user);
@@ -92,6 +94,7 @@ const App = () => {
           <Button type="submit">Send</Button>
         </Flex>
       )}
+
     </div>
   );
 }

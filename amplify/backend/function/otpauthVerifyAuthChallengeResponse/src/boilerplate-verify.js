@@ -1,5 +1,4 @@
-exports.handler = (event, context) => {
-  console.log(event);
+exports.handler = async (event, context) => {
   if (
     event.request.privateChallengeParameters.answer ===
     event.request.challengeAnswer
@@ -8,5 +7,5 @@ exports.handler = (event, context) => {
   } else {
     event.response.answerCorrect = false;
   }
-  context.done(null, event);
+  return event;
 };
