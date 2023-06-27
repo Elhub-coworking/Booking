@@ -26,7 +26,7 @@ const App = () => {
     setStatusMessage("Verifying your number");
     const phoneValue = `${dialCode}${phoneNumber}`;
     try {
-      //calling singIn without password triggers custom auth flow
+      //triggers custom auth flow
       const user = await Auth.signIn(phoneValue);
       setSession(user);
       setStatusMessage("Waiting for OTP");
@@ -43,7 +43,6 @@ const App = () => {
   };
 
   const verifyOTP = () => {
-    console.log("inside verification")
     Auth.sendCustomChallengeAnswer(session, otp)
       .then((user) => {
         setUser(user);
@@ -94,9 +93,8 @@ const App = () => {
           <Button type="submit">Send</Button>
         </Flex>
       )}
-
     </div>
   );
-}
+};
 
 export default App;
