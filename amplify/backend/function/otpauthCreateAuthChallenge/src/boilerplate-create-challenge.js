@@ -1,4 +1,3 @@
-// const AWS = require("aws-sdk");
 const { SNSClient, PublishCommand } = require("@aws-sdk/client-sns");
 
 exports.handler = async (event) => {
@@ -9,7 +8,7 @@ exports.handler = async (event) => {
     const client = new SNSClient({ region: "REGION" });
     const params = {
       Message: `Your OTP code: ${challengeAnswer}`,
-      PhoneNumber: phoneNumber, //PHONE_NUMBER, in the E.164 phone number structure
+      PhoneNumber: phoneNumber, 
       MessageAttributes: {
         "AWS.SNS.SMS.SenderID": {
           DataType: "String",
@@ -36,40 +35,4 @@ exports.handler = async (event) => {
     event.response.challengeMetadata = "CUSTOM_CHALLENGE";
   }
   return event;
-
-  // const sns = new AWS.SNS({ region: "us-east-1" });
-  // sns.publish(
-  //   {
-  //     Message: "your otp: " + challengeAnswer,
-  //     PhoneNumber: phoneNumber,
-  //     MessageStructure: "string",
-  //     MessageAttributes: {
-  //       "AWS.SNS.SMS.SenderID": {
-  //         DataType: "String",
-  //         StringValue: "AMPLIFY",
-  //       },
-  //       "AWS.SNS.SMS.SMSType": {
-  //         DataType: "String",
-  //         StringValue: "Transactional",
-  //       },
-  //     },
-  //   },
-  //   (err, data) => {
-  //     if (err) {
-  //       console.log("CREATE ERROR");
-  //       console.log(err.stack);
-  //       console.log(data);
-  //       return;
-  //     }
-  //     console.log(`SMS sent to ${phoneNumber} and otp = ${challengeAnswer}`);
-  //     return data;
-  //   }
-  // );
-
-  // //set return params
-  // event.response.privateChallengeParameters = {};
-  // event.response.privateChallengeParameters.answer = challengeAnswer;
-  // event.response.challengeMetadata = "CUSTOM_CHALLENGE";
-
-  // callback(null, event);
 };

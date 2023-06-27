@@ -19,7 +19,7 @@
       "function": {
         "otpauthCreateAuthChallenge": {
           "deploymentBucketName": "amplify-otpauth-dev-111806-deployment",
-          "s3Key": "amplify-builds/otpauthCreateAuthChallenge-2f516d42624359514550-build.zip"
+          "s3Key": "amplify-builds/otpauthCreateAuthChallenge-334d536969512b54422f-build.zip"
         },
         "otpauthDefineAuthChallenge": {
           "deploymentBucketName": "amplify-otpauth-dev-111806-deployment",
@@ -27,7 +27,7 @@
         },
         "otpauthPreSignup": {
           "deploymentBucketName": "amplify-otpauth-dev-111806-deployment",
-          "s3Key": "amplify-builds/otpauthPreSignup-53354a32302f5075614e-build.zip"
+          "s3Key": "amplify-builds/otpauthPreSignup-394d4a7334636947554b-build.zip"
         },
         "otpauthVerifyAuthChallengeResponse": {
           "deploymentBucketName": "amplify-otpauth-dev-111806-deployment",
