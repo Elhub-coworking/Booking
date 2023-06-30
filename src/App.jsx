@@ -26,12 +26,11 @@ const App = () => {
   const signIn = async () => {
     setStatusMessage("Verifying your number");
     const phoneValue = `${dialCode}${phoneNumber}`;
-
     try {
-      const user = await sendOTP(phoneValue);
-      setSession(user);
+      const userSession = await sendOTP(phoneValue);
+      setSession(userSession);
       setStatusMessage("Waiting for OTP");
-      console.log("app", user);
+      console.log("app", userSession);
     } catch (error) {
       console.log("App error", error);
     }
@@ -60,18 +59,12 @@ const App = () => {
       )}
 
       {!user && session && (
-        <Flex
-          as="form"
-          direction="column"
-          gap="1rem"
-          width="30vw"
-          // onSubmit={verifyOTP}
-        >
+        <Flex direction="column" gap="1rem" width="30vw">
           <TextField
             isRequired={true}
             onChange={(event) => setOTP(event.target.value)}
           />
-          <Button type="submit">Send</Button>
+          <Button>Send</Button>
         </Flex>
       )}
     </div>

@@ -1,9 +1,9 @@
 import twilio from "twilio";
-// import "dotenv/config";
+import "dotenv/config";
 
 const client = twilio(
-  "AC4193e4911b7d637fd3beef6bf73850f1",
-  "93a2b4df394210d99ec9153b4c6f6002"
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
 );
 
 const sendOTP = async (phoneNumber) => {
@@ -15,6 +15,9 @@ const sendOTP = async (phoneNumber) => {
       body: `Your OTP code is: ${codeOTP}`,
     });
     console.log(message.sid);
+    return {
+      user: "Test user object"
+    }
   } catch (error) {
     console.log(error);
   }
