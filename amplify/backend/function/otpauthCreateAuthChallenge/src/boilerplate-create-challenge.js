@@ -1,32 +1,28 @@
 const { SNSClient, PublishCommand } = require("@aws-sdk/client-sns");
+// require('dotenv').config()
+
+// const client = require("twilio")(
+//   process.env.TWILIO_ACCOUNT_SID,
+//   process.env.TWILIO_AUTH_TOKEN
+// );
 
 exports.handler = async (event) => {
   const challengeAnswer = Math.random().toString(10).slice(2, 6);
   const phoneNumber = event.request.userAttributes.phone_number;
 
   if (!event.request.session || event.request.session.length === 0) {
-    const client = new SNSClient({ region: "REGION" });
-    const params = {
-      Message: `Your OTP code: ${challengeAnswer}`,
-      PhoneNumber: phoneNumber, 
-      MessageAttributes: {
-        "AWS.SNS.SMS.SenderID": {
-          DataType: "String",
-          StringValue: "AMPLIFY",
-        },
-        "AWS.SNS.SMS.SMSType": {
-          DataType: "String",
-          StringValue: "Transactional",
-        },
-      },
-    };
-    const command = new PublishCommand(params);
     try {
-      const data = await client.send(command);
-      console.log(`SMS sent to ${phoneNumber} and otp = ${challengeAnswer}`);
-      return data;
-    } catch (err) {
-      console.log("Error", err.stack);
+      const message = await client.messages.create({
+        from: "+13093883031",
+        to: phoneNumber,
+        body: `Your OTP code is: ${challengeAnswer}`,
+      });
+      return {
+        user: "exists"
+      }
+
+    } catch (error) {
+      console.log(error);
     }
 
     event.response.privateChallengeParameters = {

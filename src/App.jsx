@@ -1,5 +1,6 @@
 import "./App.css";
 
+import { sendOTP } from "./helpers/sendOTP";
 import React, { useState } from "react";
 import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
@@ -25,36 +26,15 @@ const App = () => {
   const signIn = async () => {
     setStatusMessage("Verifying your number");
     const phoneValue = `${dialCode}${phoneNumber}`;
+
     try {
-      //calling singIn without password triggers custom auth flow
-      const user = await Auth.signIn(phoneValue);
+      const user = await sendOTP(phoneValue);
       setSession(user);
       setStatusMessage("Waiting for OTP");
       console.log("app", user);
     } catch (error) {
-      if (error.code === "UserNotFoundException") {
-        setStatusMessage("User not found");
-      } else if (error.code === "UsernameExistsException") {
-        setStatusMessage("Waiting for OTP-222");
-      } else {
-        console.error(error);
-      }
+      console.log("App error", error);
     }
-  };
-
-  const verifyOTP = () => {
-    console.log("inside verification")
-    Auth.sendCustomChallengeAnswer(session, otp)
-      .then((user) => {
-        setUser(user);
-        setStatusMessage("Verification successful");
-        setSession(null);
-      })
-      .catch((error) => {
-        setStatusMessage(error);
-        setOTP("");
-        console.log(error);
-      });
   };
 
   return (
@@ -85,7 +65,7 @@ const App = () => {
           direction="column"
           gap="1rem"
           width="30vw"
-          onSubmit={verifyOTP}
+          // onSubmit={verifyOTP}
         >
           <TextField
             isRequired={true}
@@ -94,9 +74,8 @@ const App = () => {
           <Button type="submit">Send</Button>
         </Flex>
       )}
-
     </div>
   );
-}
+};
 
 export default App;
