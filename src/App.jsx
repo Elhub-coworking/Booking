@@ -78,18 +78,12 @@ const App = () => {
       )}
 
       {!user && session && (
-        <Flex
-          as="form"
-          direction="column"
-          gap="1rem"
-          width="30vw"
-          onSubmit={verifyOTP}
-        >
+        <Flex direction="column" gap="1rem" width="30vw">
           <TextField
             isRequired={true}
             onChange={(event) => setOTP(event.target.value)}
           />
-          <Button type="submit">Send</Button>
+          <Button onClick={verifyOTP}>Send</Button>
         </Flex>
       )}
     </div>
