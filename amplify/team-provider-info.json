@@ -19,19 +19,19 @@
       "function": {
         "otpauthCreateAuthChallenge": {
           "deploymentBucketName": "amplify-otpauth-dev-111806-deployment",
-          "s3Key": "amplify-builds/otpauthCreateAuthChallenge-334d536969512b54422f-build.zip"
+          "s3Key": "amplify-builds/otpauthCreateAuthChallenge-393035744a364b523664-build.zip"
         },
         "otpauthDefineAuthChallenge": {
           "deploymentBucketName": "amplify-otpauth-dev-111806-deployment",
-          "s3Key": "amplify-builds/otpauthDefineAuthChallenge-4d66655876744842466f-build.zip"
+          "s3Key": "amplify-builds/otpauthDefineAuthChallenge-377443325a554a47397a-build.zip"
         },
         "otpauthPreSignup": {
           "deploymentBucketName": "amplify-otpauth-dev-111806-deployment",
-          "s3Key": "amplify-builds/otpauthPreSignup-394d4a7334636947554b-build.zip"
+          "s3Key": "amplify-builds/otpauthPreSignup-35636b6c493254376362-build.zip"
         },
         "otpauthVerifyAuthChallengeResponse": {
           "deploymentBucketName": "amplify-otpauth-dev-111806-deployment",
-          "s3Key": "amplify-builds/otpauthVerifyAuthChallengeResponse-63693062567163775133-build.zip"
+          "s3Key": "amplify-builds/otpauthVerifyAuthChallengeResponse-42704d385259576d7a55-build.zip"
         }
       }
     }

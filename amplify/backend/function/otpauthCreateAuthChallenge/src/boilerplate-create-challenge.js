@@ -5,7 +5,7 @@ exports.handler = async (event) => {
   const phoneNumber = event.request.userAttributes.phone_number;
 
   if (!event.request.session || event.request.session.length === 0) {
-    const client = new SNSClient({ region: "REGION" });
+    const client = new SNSClient({ region: "us-east-1" });
     const params = {
       Message: `Your OTP code: ${challengeAnswer}`,
       PhoneNumber: phoneNumber, 

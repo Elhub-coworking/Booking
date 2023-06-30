@@ -13,7 +13,7 @@ exports.handler = async (event) => {
     event.response.failAuthentication = false;
     event.response.issueTokens = true;
   } else {
-    // Something is wrong. Fail authentication
+    // Something's wrong. Fail authentication
     event.response.failAuthentication = true;
     event.response.issueTokens = false;
   }

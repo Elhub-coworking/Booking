@@ -27,10 +27,10 @@ const App = () => {
     const phoneValue = `${dialCode}${phoneNumber}`;
     try {
       //triggers custom auth flow
-      const user = await Auth.signIn(phoneValue);
-      setSession(user);
+      const userSession = await Auth.signIn(phoneValue);
+      setSession(userSession);
       setStatusMessage("Waiting for OTP");
-      console.log("app", user);
+      console.log("app", userSession);
     } catch (error) {
       if (error.code === "UserNotFoundException") {
         setStatusMessage("User not found");
@@ -42,18 +42,17 @@ const App = () => {
     }
   };
 
-  const verifyOTP = () => {
-    Auth.sendCustomChallengeAnswer(session, otp)
-      .then((user) => {
-        setUser(user);
-        setStatusMessage("Verification successful");
-        setSession(null);
-      })
-      .catch((error) => {
-        setStatusMessage(error);
-        setOTP("");
-        console.log(error);
-      });
+  const verifyOTP = async () => {
+    try {
+      const user = await Auth.sendCustomChallengeAnswer(session, otp);
+      setUser(user);
+      setStatusMessage("Verification successful");
+      setSession(null);
+    } catch (error) {
+      setStatusMessage(error);
+      setOTP("");
+      console.log(error);
+    }
   };
 
   return (
